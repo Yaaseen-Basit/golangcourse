@@ -1,0 +1,38 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
+import "strings"
+
+//var inputString string
+func main() {
+
+	fmt.Printf("Please Enter a string:")
+	// take input as line
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	inputString := scanner.Text()
+
+	fmt.Printf("\t The string entered by you is: \t\"%v\" \n", inputString)
+
+	lowerString := strings.ToLower(inputString)
+	fmt.Printf("\t[Step-I] Convert it to lower case: \t%v \n", lowerString)
+
+	formattedString := strings.ReplaceAll(lowerString, " ", "")
+	fmt.Printf("\t[Step-II] Ignoring all spaces: \t%v \n", formattedString)
+	fmt.Printf("\t[Step-III] Finding 'i a n'. . .\t\n")
+
+	fmt.Println("------------------------------------------------------------------")
+	if strings.Contains(formattedString, "a") { // search 'a'
+		if strings.HasPrefix(formattedString, "i") { // search 'i' a start
+			if strings.HasSuffix(formattedString, "n") { // search 'n' at end
+				fmt.Println("Found!")
+				os.Exit(0) // exits code if found.
+			}
+		}
+	}
+	fmt.Println("Not Found!")
+}
